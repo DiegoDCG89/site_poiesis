@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POIESIS | Cia. Teatral Gospel</title>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Paleta de Cores Exata */
+        :root {
+            --cor-fundo: #F8E1CF;       /* Creme claro do fundo */
+            --cor-texto: #763F21;       /* Marrom escuro */
+            --cor-destaque: #D2A27A;    /* Terracota/Mostarda */
+            --cor-secundaria: #D8C2A7;  /* Bege */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Rolagem suave para os links âncora */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        h2.section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* HEADER / NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            position: sticky;
+            top: 0;
+            background-color: rgba(248, 225, 207, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(118, 63, 33, 0.1);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            z-index: 1001; /* Fica acima do menu mobile */
+        }
+
+        .brand img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            margin-bottom: 0.3rem;
+            border-radius: 50%;
+            border: 2px solid var(--cor-destaque);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .brand h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        .brand span {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--cor-destaque);
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--cor-texto);
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+
+        .social-header {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-header a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border: 1px solid var(--cor-secundaria);
+            border-radius: 50%;
+            color: var(--cor-texto);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-header a:hover {
+            background-color: var(--cor-destaque);
+            color: white;
+            border-color: var(--cor-destaque);
+        }
+
+        /* Botão Menu Hambúrguer (Escondido no Desktop) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--cor-texto);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* HERO SECTION (Tela Dividida) */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: calc(100vh - 120px);
+            min-height: 600px;
+            position: relative;
+        }
+
+        .hero-text {
+            padding: 2rem 2rem 2rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cor-texto);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .hero-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero-text h2 span {
+            color: var(--cor-destaque);
+            font-style: italic;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 450px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--cor-destaque);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 3px;
+            width: fit-content;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--cor-texto);
+            transform: translateY(-2px);
+        }
+
+        /* Lado da Imagem (Carrossel) */
+        .hero-image {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(0.85);
+        }
+
+        /* Setas do Carrossel (Agora DENTRO da foto) */
+        .btn-prev, .btn-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente para dar contraste com a foto */
+            color: var(--cor-texto);
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-prev {
+            left: 1rem; /* Posicionado no canto esquerdo da FOTO */
+        }
+
+        .btn-next {
+            right: 1rem; /* Posicionado no canto direito da FOTO */
+        }
+
+        .btn-prev:hover, .btn-next:hover { 
+            transform: translateY(-50%) scale(1.1); 
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .dot.active {
+            background-color: white;
+            transform: scale(1.3);
+        }
+
+        /* BOTTOM FEATURES SECTION */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 5rem 4rem;
+            border-top: 1px solid rgba(118, 63, 33, 0.1);
+            background-color: var(--cor-fundo);
+        }
+
+        .feature-box {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0 2rem;
+            border-right: 1px solid rgba(118, 63, 33, 0.15);
+        }
+
+        .feature-box:last-child { border-right: none; }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--cor-destaque);
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .feature-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-content p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .feature-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--cor-destaque);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .feature-link:hover { color: var(--cor-texto); }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            padding: 7rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content-section.reverse {
+            background-color: var(--cor-secundaria);
+        }
+
+        .content-section.reverse .text-content {
+            order: 2;
+        }
+
+        .content-section.reverse .image-content {
+            order: 1;
+        }
+
+        .text-content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-content p strong {
+            font-weight: 600;
+            color: var(--cor-destaque);
+        }
+
+        .image-content img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* SECTION CONTATO */
+        .contact-section {
+            padding: 7rem 4rem;
+            text-align: center;
+            background-color: var(--cor-texto);
+            color: var(--cor-fundo);
+        }
+
+        .contact-section h2.section-title {
+            color: var(--cor-secundaria);
+        }
+
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(216, 194, 167, 0.2);
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cor-destaque);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--cor-destaque);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card a {
+            color: var(--cor-secundaria);
+            font-weight: 300;
+        }
+        
+        .card a:hover {
+            color: var(--cor-fundo);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5a2e16;
+            color: var(--cor-secundaria);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* =========================================
+           REGRAS DE RESPONSIVIDADE (Mobile & Tablets)
+           ========================================= */
+        @media (max-width: 1024px) {
+            header {
+                padding: 1.5rem 2rem;
+            }
+            .hero { 
+                grid-template-columns: 1fr; 
+                height: auto;
+            }
+            .hero-image {
+                height: 500px; /* Dá uma altura fixa para o carrossel no celular */
+                order: -1; /* Faz a imagem aparecer ANTES do texto no celular */
+            }
+            .hero-text { 
+                padding: 4rem 2rem; 
+                text-align: center; 
+                align-items: center; 
+            }
+            .hero-text h2 { 
+                font-size: 3rem; 
+            }
+            .features { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 2rem; 
+                padding: 4rem 2rem;
+            }
+            .feature-box { 
+                border-right: none; 
+                padding: 0;
+            }
+            .content-section, .content-section.reverse { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                padding: 4rem 2rem;
+                gap: 2rem;
+            }
+            .content-section.reverse .text-content, .content-section.reverse .image-content { 
+                order: unset; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Configuração do Menu Mobile */
+            .menu-toggle {
+                display: block;
+            }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--cor-fundo);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Esconde o menu */
+                opacity: 0;
+                pointer-events: none;
+            }
+            .nav-menu.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Mostra o menu */
+                opacity: 1;
+                pointer-events: all;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+            
+            /* Ajustes gerais de tamanho no Celular */
+            .hero-text h2 { 
+                font-size: 2.5rem; 
+            }
+            .hero-image {
+                height: 350px;
+            }
+            .features { 
+                grid-template-columns: 1fr; 
+            }
+            .contact-section {
+                padding: 4rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="inicio">
+        <a href="#inicio" class="brand">
+            <img src="logo-poiesis.jpg" alt="POIESIS Logo">
+            <h1>POIESIS</h1>
+            <span>Arte que Transforma</span>
+        </a>
+        
+        <!-- Botão Menu Hamburguer (Mobile) -->
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#nossa-historia">Nossa História</a></li>
+                <li><a href="#quem-somos">Quem Somos</a></li>
+                <li><a href="#parcerias">Parcerias</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            
+            <div class="social-header">
+                <a href="https://www.instagram.com/poiesismovimento/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#contato" title="Fale Conosco"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-text">
+                <span class="subtitle">Bem-vindo ao nosso palco</span>
+                <h2>A arte como<br>ponte para o <span>Eterno.</span></h2>
+                <p>Acreditamos que o teatro não é apenas encenação, mas um encontro sagrado. Cada movimento é uma oração, cada fala é uma semente de esperança lançada aos corações.</p>
+                <a href="#participar" class="btn-cta">Venha Participar &rarr;</a>
+            </div>
+
+            <div class="hero-image">
+                <!-- AS SETAS AGORA ESTÃO AQUI, DENTRO DA IMAGEM -->
+                <button class="btn-prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+                
+                <img id="carousel-img" src="https://images.unsplash.com/photo-1507676184212-d0330a15233c?auto=format&fit=crop&w=1200&q=80" alt="Cena de Teatro">
+                
+                <div class="carousel-dots" id="dots-container">
+                    <!-- Bolinhas geradas pelo JavaScript -->
+                </div>
+                
+                <button class="btn-next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- BOTTOM FEATURES (Links Rápidos) -->
+        <section class="features">
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-scroll"></i></div>
+                <div class="feature-content">
+                    <h3>Nossa História</h3>
+                    <p>Como uma pequena chama se tornou um movimento de fé e arte em Lorena.</p>
+                    <a href="#nossa-historia" class="feature-link">Ler História <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-theater-masks"></i></div>
+                <div class="feature-content">
+                    <h3>Quem Somos</h3>
+                    <p>Nossos valores, nossa essência e o propósito que nos move nos palcos.</p>
+                    <a href="#quem-somos" class="feature-link">Descubra <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-hands-helping"></i></div>
+                <div class="feature-content">
+                    <h3>Parcerias</h3>
+                    <p>As comunidades e apoiadores que caminham conosco nesta jornada.</p>
+                    <a href="#parcerias" class="feature-link">Conheça <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <div class="feature-content">
+                    <h3>Contato</h3>
+                    <p>Sente o chamado? Convide a POIESIS ou venha fazer parte da companhia.</p>
+                    <a href="#contato" class="feature-link">Fale Conosco <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: NOSSA HISTÓRIA -->
+        <section id="nossa-historia" class="content-section reverse">
+            <div class="text-content">
+                <h2 class="section-title">Onde a chama foi acesa.</h2>
+                <p>Nascemos de um sonho plantado no interior de São Paulo, na cidade de <strong>Lorena</strong>. O que começou como um pequeno grupo de jovens apaixonados por arte, rapidamente foi moldado pelo Espírito Santo, transformando-se na Cia POIESIS.</p>
+                <p>Enfrentamos desafios, ensaiamos em pequenas salas improvisadas, mas o fogo do propósito sempre ardeu em nossos corações. Cada roteiro escrito e cada figurino costurado carrega lágrimas, orações e a certeza de que a arte cristã tem o poder de resgatar o que estava perdido.</p>
+                <p>Nossa história não é sobre grandes produções, mas sobre o Deus grandioso que usa pessoas comuns para contar histórias extraordinárias de redenção.</p>
+            </div>
+            <div class="image-content">
+                <img src="https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=800&q=80" alt="Público de Teatro">
+            </div>
+        </section>
+
+        <!-- SEÇÃO: QUEM SOMOS -->
+        <section id="quem-somos" class="content-section">
+            <div class="image-content">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Expressão Teatral">
+            </div>
+            <div class="text-content">
+                <h2 class="section-title">Instrumentos em cena.</h2>
+                <p>A palavra <em>"Poiesis"</em> tem origem no grego e significa <strong>ação, criação, a poesia que se faz vida</strong>. Somos mais que atores decorando falas; somos mensageiros que emprestam o corpo, a voz e a alma para anunciar o Evangelho.</p>
+                <p>Como um movimento cultural de artes integradas, nós abraçamos o teatro, a dança, a música e a expressão corporal. Nosso objetivo não é o aplauso final, mas o silêncio reflexivo de um coração que acaba de ser tocado pela Graça.</p>
+                <p>Quando as luzes se acendem e as cortinas se abrem, nós deixamos de ser nós mesmos para que Ele apareça.</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: PARCERIAS -->
+        <section id="parcerias" class="content-section reverse">
+            <div class="text-content">
+                <h2 class="section-title">Juntos somos um movimento.</h2>
+                <p>Nenhuma grande obra se levanta sozinha. Acreditamos firmemente no poder da unidade. Somos sustentados por orações de intercessores, apoiadores locais, igrejas e líderes comunitários de Lorena e região.</p>
+                <p>Nossos parceiros entendem que a cultura e a arte não são entretenimento vazio, mas ferramentas poderosas de transformação social e espiritual. Se sua igreja, empresa ou ministério deseja sonhar junto conosco, as portas estão abertas.</p>
+                <a href="#contato" class="btn-cta" style="margin-top: 1rem;">Seja um Parceiro</a>
+            </div>
+            <div class="image-content">
+                <img src="https://images.unsplash.com/photo-1520483601560-389dff434fdf?auto=format&fit=crop&w=800&q=80" alt="Mãos unidas em parceria">
+            </div>
+        </section>
+    </div>
+
+    <!-- SEÇÃO: CONTATO E VENHA PARTICIPAR -->
+    <section id="participar" class="contact-section">
+        <div id="contato">
+            <h2 class="section-title">As cortinas estão abertas para você.</h2>
+            <p>Sente que Deus está te chamando para os palcos? Deseja levar a Cia POIESIS para impactar os jovens da sua igreja? Ou quer apenas nos mandar uma mensagem de carinho? O palco é seu.</p>
+            
+            <div class="contact-cards">
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h4>Venha Participar</h4>
+                    <p>Acompanhe nossas redes sociais para saber as datas das próximas audições e oficinas teatrais.</p>
+                </div>
+                <div class="card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>Agendas e Convites</h4>
+                    <p>Fale diretamente com nossa produção para levar nossos espetáculos até você.</p>
+                    <a href="#">+55 (12) 99999-9999</a>
+                </div>
+                <div class="card">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Nosso Dia a Dia</h4>
+                    <p>Siga-nos no Instagram para ver bastidores, ensaios e palavras de encorajamento.</p>
+                    <a href="https://www.instagram.com/poiesismovimento/" target="_blank">@poiesismovimento</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Movimento Cultural POIESIS - Lorena, SP. Todos os direitos reservados. Feito para a glória de Deus.</p>
+    </footer>
+
+    <!-- Scripts (Carrossel e Menu Mobile) -->
+    <script>
+        // --- 1. SCRIPT DO MENU MOBILE ---
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Muda o ícone de hambúrguer para X
+            const icon = menuToggle.querySelector('i');
+            if(navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Esconde o menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // --- 2. SCRIPT DO CARROSSEL ---
+        const images = [
+             
+            "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=1200&q=80", 
+             
+            "https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1200&q=80", 
+            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1200&q=80", 
+            "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=80"  
+        ];
+        
+        let currentIndex = 0;
+        const imgElement = document.getElementById('carousel-img');
+        const dotsContainer = document.getElementById('dots-container');
+
+        // Gera as bolinhas
+        images.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+            
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateCarousel() {
+            imgElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                imgElement.src = images[currentIndex];
+                imgElement.style.opacity = 1;
+            }, 300); 
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel();
+        }
+
+        setInterval(nextSlide, 5000);
+
+        imgElement.style.transition = "opacity 0.4s ease-in-out";
+    </script>
+</body>
+</html>
